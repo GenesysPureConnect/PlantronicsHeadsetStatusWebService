@@ -15,8 +15,17 @@
                     table += key;
                     table += "</td><td>";
                     table += data[key].status;
+                    if(data[key].onPhone === true){
+                        table += ", On Phone"
+                    }
+
+                    if(data[key].headsetConnected === true){
+                        table += ", Headset Connected"
+                    }
+
+
                     table += "</td><td>";
-                    table += data[key].headset;
+                    table += data[key].device;
                     table += "</td><td>";
                     table += data[key].serial;
                     table += "</td></tr>";

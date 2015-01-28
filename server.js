@@ -46,8 +46,10 @@ app.get('/', function(request, response){
 app.post('/statuschange', function(req, res){
     console.log('webhook received: ' + JSON.stringify(req.body));
 
-    if(req.body.userId){
+    if(req.body.userId && req.body.loggedIn === true){
         statusInfo[req.body.userId] = req.body;
+    }else if(req.body.userId && req.body.loggedIn === false && statusInfo[req.body.userId] != null){
+        delete statusInfo[req.body.userId];
     }
 
     res.send();
