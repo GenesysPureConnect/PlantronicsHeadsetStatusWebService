@@ -36,7 +36,7 @@ app.listen(app.get('port'), function() {
 
 
 app.get('/status', function(request, response){
-    response.send(devices);
+    response.send(statusInfo);
 })
 
 app.get('/', function(request, response){
