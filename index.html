@@ -9,7 +9,7 @@
     <script>
         setInterval(function(){
             $.get( "/status", function( data ) {
-                var table="<table class='table table-bordered' ><tr><th>User</th><th>Status</th><th>Headset Type</th><th>Serial Number</th></tr>"
+                var table="<table class='table table-bordered table-striped' ><tr><th>User</th><th>Status</th><th>Headset Type</th><th>Serial Number</th></tr>"
                 for(var key in data){
                     table += "<tr><td>";
                     table += key;
@@ -20,7 +20,7 @@
                     }
 
                     if(data[key].headsetConnected === true){
-                        table += ", Headset Connected"
+                        table += '<span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>'
                     }
 
 
@@ -39,7 +39,7 @@
     </script>
 </head>
 <body>
-    <div id='status' style='width:550px'>
+    <div id='status' style='width:90%;margin-left:auto;margin-right:auto'>
     </div>
 </body>
 </html>
