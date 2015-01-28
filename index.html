@@ -5,25 +5,51 @@
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
 
+    <style>
+        .input-group{
+            width:50%;
+            margin-left:auto;
+            margin-right:auto
+        }
+
+        #status{
+            width:90%;
+            margin-left:auto;
+            margin-right:auto
+        }
+
+        .glyphicon{
+            float:right;
+            margin-left:5px;
+        }
+    </style>
 
     <script>
         setInterval(function(){
             $.get( "/status", function( data ) {
-                var table="<table class='table table-bordered table-striped' ><tr><th>User</th><th>Status</th><th>Headset Type</th><th>Serial Number</th></tr>"
+                var table="<table class='table table-bordered table-striped' > <thead><tr><th>User</th><th>Status</th><th>Station</th><th>Headset Type</th><th>Serial Number</th></tr> </thead><tbody class='searchable'>"
                 for(var key in data){
                     table += "<tr><td>";
                     table += key;
                     table += "</td><td>";
                     table += data[key].status;
-                    if(data[key].onPhone === true){
-                        table += ", On Phone"
-                    }
+
 
                     if(data[key].headsetConnected === true){
-                        table += '<span class="glyphicon glyphicon-headphones" aria-hidden="true"></span>'
+                        table += '<span class="glyphicon glyphicon-headphones" aria-hidden="true" title="Headset Connected"></span>'
                     }
 
+                    if(data[key].isMuted === true){
+                        table += '<span class="glyphicon glyphicon-volume-off" aria-hidden="true" title="Muted"></span>'
+                    }
 
+                    if(data[key].onPhone === true){
+                        table += '<span class="glyphicon glyphicon-earphone" aria-hidden="true" title="On Phone"></span>'
+                    }
+
+                    table += "</td><td>";
+
+                    table += data[key].station;
                     table += "</td><td>";
                     table += data[key].device;
                     table += "</td><td>";
@@ -31,15 +57,34 @@
                     table += "</td></tr>";
 
                 }
-                table += "</table>"
+                table += "</tbody></table>"
                 $('#status').html(table);
+                runFilter();
             });
 
         }, 2000);
+
+        function runFilter(){
+            var rex = new RegExp($('#filter').val(), 'i');
+            $('.searchable tr').hide();
+            $('.searchable tr').filter(function () {
+                return rex.test($(this).text());
+            }).show();
+        }
+
+        $(document).ready(function(){
+            $('#filter').keyup(function () {
+                runFilter();
+            })
+        })
     </script>
 </head>
 <body>
-    <div id='status' style='width:90%;margin-left:auto;margin-right:auto'>
+    <div class="input-group" > <span class="input-group-addon">Filter</span>
+
+        <input id="filter" type="text" class="form-control" placeholder="Type here...">
+    </div>
+    <div id='status' >
     </div>
 </body>
 </html>
