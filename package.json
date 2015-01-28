@@ -1,0 +1,16 @@
+{
+    "name": "PlantronicsHeadsetStatusWebService",
+    "version": "0.0.1",
+    "description": "Application to poll sip devices to make sure they can respond to SIP OPTIONS messages.",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "dependencies": {
+        "express": "~4.9.x",
+        "request":"*",
+        "cors":"*",
+        "body-parser": "*"
+    },
+    "license": "MPLv2"
+}
