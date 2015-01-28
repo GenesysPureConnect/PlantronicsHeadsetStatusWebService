@@ -47,7 +47,7 @@ app.post('/statuschange', function(req, res){
     console.log('webhook received: ' + JSON.stringify(req.body));
 
     if(req.body.userId){
-        statusInfo[userId] = req.body;
+        statusInfo[req.body.userId] = req.body;
     }
 
     res.send();
