@@ -1,9 +1,12 @@
+<!DOCTYPE html>
 <html>
 <head>
     <title>Plantronics Headsets</title>
     <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+    <!--
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">-->
+    <link href="//maxcdn.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
 
     <style>
         .input-group{
@@ -18,7 +21,8 @@
             margin-right:auto
         }
 
-        .glyphicon{
+        [class^="icon-"],
+        [class*=" icon-"] {
             float:right;
             margin-left:5px;
         }
@@ -36,15 +40,15 @@
 
 
                     if(data[key].headsetConnected === true){
-                        table += '<span class="glyphicon glyphicon-headphones" aria-hidden="true" title="Headset Connected"></span>'
+                        table += '<span class="icon-headphones" aria-hidden="true" title="Headset Connected"></span>'
                     }
 
                     if(data[key].isMuted === true){
-                        table += '<span class="glyphicon glyphicon-volume-off" aria-hidden="true" title="Muted"></span>'
+                        table += '<span class="icon-volume-off" aria-hidden="true" title="Muted"></span>'
                     }
 
                     if(data[key].onPhone === true){
-                        table += '<span class="glyphicon glyphicon-earphone" aria-hidden="true" title="On Phone"></span>'
+                        table += '<span class="icon-comment" aria-hidden="true" title="On Phone"></span>'
                     }
 
                     table += "</td><td>";
